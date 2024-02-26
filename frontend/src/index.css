@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gold--: #f5c431;
+  --gold-1--: #d6a30c;
+  --gold-2--: #a97f00;
+  --back-1--: #141414;
+  --back-2--: #272727;
+  --white--: #ffffff;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Reem Kufi Fun", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ------------------------------
+NAVBAR
+------------------------------- */
+.nav_bar {
+  background: var(--back-1--);
+}
+.navbar_container {
+  display: flex;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--gold--);
+}
+.single_navbar_item {
+  margin-right: 1.25rem;
+}
+.single_navbar_item:last-child {
+  margin-right: 0;
+}
+.single_navbar_item .navbar_link {
+  color: var(--white--);
+  transition: color 0.2s ease-in;
+}
+.single_navbar_item .navbar_link:hover {
+  color: var(--gold--);
+}
+.single_navbar_item .navbar_logo {
+  color: var(--gold--);
+}
+.services_link {
+  margin-left: auto;
+}
+/* ------------------------------
+HERO SECTION
+------------------------------- */
+.hero_section {
+  padding: 5rem 0;
+  background: var(--back-1--);
+  color: var(--white--);
+}
+.hero_section_container {
+  display: flex;
+  justify-content: space-between;
+}
+.hero_section_1 {
+  margin-top: 5rem;
+  width: 75%;
+}
+.hero_section_1_header {
+  font-size: 2rem;
+  font-weight: 800;
+}
+.hero_section_1_text {
+  width: 35rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+.booking_btn {
+  background: var(--gold--);
+  color: var(--back-1--);
+  font-weight: 700;
+  padding: 0.95rem;
+}
+.hero_section_2 {
+  width: 25%;
+  position: relative;
+  z-index: 3;
+}
+.img_line {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--gold--);
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: -1;
+}
+.hero_pics {
+  width: 100%;
+  z-index: 3;
+}
