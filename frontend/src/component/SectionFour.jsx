@@ -11,10 +11,24 @@ const SectionFour = () => {
         <h1 className="section_4_header">Featured gallery</h1>
         <Swiper
           slidesPerView={3}
-          spaceBetween={30}
+          spaceBetween={10}
           freeMode={true}
           pagination={{
             clickable: true,
+          }}
+          breakpoints={{
+            200: {
+              slidesPerView: 1,
+              spaceBetween: 7,
+            },
+            425: {
+              slidesPerView: 2,
+              spaceBetween: 5,
+            },
+            576: {
+              slidesPerView: 3,
+              spaceBetween: 5,
+            },
           }}
           modules={[FreeMode, Pagination]}
           className="mySwiper"
@@ -24,12 +38,6 @@ const SectionFour = () => {
           </SwiperSlide>
           <SwiperSlide>
             <img src="./gallery_2.jpg" alt="gallery_image" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="./gallery_3.jpg" alt="gallery_image" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="./gallery_4.jpg" alt="gallery_image" />
           </SwiperSlide>
           <SwiperSlide>
             <img src="./gallery_5.jpg" alt="gallery_image" />

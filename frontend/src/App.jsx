@@ -1,23 +1,17 @@
-import Footer from "./component/Footer";
-import HeroSection from "./component/HeroSection";
-import Navbar from "./component/Navbar";
-import SectionFive from "./component/SectionFive";
-import SectionFour from "./component/SectionFour";
-import SectionOne from "./component/SectionOne";
-import SectionThree from "./component/SectionThree";
-import SectionTwo from "./component/SectionTwo";
+import { Routes, Route } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <HeroSection />
-      <SectionOne />
-      <SectionTwo />
-      <SectionThree />
-      <SectionFour />
-      <SectionFive />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
     </>
   );
 }
