@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { MdClose } from "react-icons/md";
@@ -12,28 +13,28 @@ const Navbar = () => {
   return (
     <nav className="nav_bar">
       <div className="navbar_container container">
-        <a href="" className="navbar_link navbar_logo">
+        <Link to="/" className="navbar_link navbar_logo">
           logo
-        </a>
+        </Link>
         <ul
           className={
             showNav ? "open_navbar navbar_items" : "close_navbar navbar_items"
           }
         >
           <li className="single_navbar_item">
-            <a href="" className="navbar_link">
+            <Link to="/sign-in" className="navbar_link">
               Book Appointment
-            </a>
+            </Link>
           </li>
           <li className="single_navbar_item">
-            <a href="" className="navbar_link">
+            <Link to="/sign-in" href="" className="navbar_link">
               Log In
-            </a>
+            </Link>
           </li>
           <li className="single_navbar_item">
-            <a href="" className="navbar_link">
+            <Link to="/sign-up" href="" className="navbar_link">
               Register
-            </a>
+            </Link>
           </li>
         </ul>
         <button onClick={handleNavView} className="menu_icon_btn">

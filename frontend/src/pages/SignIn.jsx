@@ -5,6 +5,7 @@ const SignIn = () => {
     <form className="sign_in_form" action="">
       <div className="form_container">
         <h1 className="form_header">Sign in here</h1>
+        <p className="form_subtitle">Sign in to book an appointment</p>
         <label className="form_label">
           Email
           <input className="form_input" type="email" />

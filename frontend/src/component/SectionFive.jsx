@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SectionFive = () => {
   return (
     <section className="section_5">
@@ -10,9 +12,9 @@ const SectionFive = () => {
           Schedule your next haircut service online. Our online booking is fast
           and available 24/7. Book now and get ready to look your best
         </p>
-        <a href="" className="general_btn banner_btn">
+        <Link to="/sign-in" className="general_btn banner_btn">
           Make Appointment
-        </a>
+        </Link>
       </div>
     </section>
   );

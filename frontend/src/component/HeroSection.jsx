@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section className="hero_section">
@@ -14,9 +15,9 @@ const HeroSection = () => {
             precision cuts and personalized service. Elevate your style at our
             premier barber shop, where tradition meets innovation.{" "}
           </p>
-          <a href="" className="general_btn">
+          <Link to="/sign-in" className="general_btn">
             Book An Appointment
-          </a>
+          </Link>
         </div>
         <div className="hero_section_2">
           <div className="img_line"></div>
