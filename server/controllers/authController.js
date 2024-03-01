@@ -7,7 +7,20 @@ const User = require("../models/userModel");
 const sendEmail = require("../utils/sendEmail");
 
 exports.protect = async (req, res, next) => {
-  console.log(req.cookies);
+  const token = req.cookies.auth_token;
+  if (!token) {
+    throw new CustomError("Please log in no token available", 400);
+  }
+  const payload = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  console.log(payload);
+  const user = await User.findOne({ _id: payload.userId });
+
+  if (!user) {
+    throw new CustomError("User does not exist", 400);
+  }
+
+  req.user = payload;
+
   next();
 };
 
@@ -82,7 +95,7 @@ exports.verifyEmail = async (req, res) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const tokenObj = { user_id: user._id };
+  const tokenObj = { userId: user._id };
 
   const jwtToken = jwt.sign(tokenObj, process.env.JWT_SECRET_KEY, {
     expiresIn: "90d",
@@ -121,7 +134,7 @@ exports.signIn = async (req, res) => {
     throw new CustomError("Account not verified", 400);
   }
 
-  const jwtToken = jwt.sign({ user_id: user._id }, process.env.JWT_SECRET_KEY, {
+  const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: "90d",
   });
 
@@ -137,5 +150,10 @@ exports.signIn = async (req, res) => {
 };
 
 exports.getCurrentUser = async (req, res) => {
-  res.status(200).json({ status: "success", message: "current user" });
+  const user = await User.findOne({ _id: req.user.userId }).select(
+    "fullName email"
+  );
+  res
+    .status(200)
+    .json({ status: "success", message: "current user", data: user });
 };

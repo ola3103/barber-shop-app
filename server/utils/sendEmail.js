@@ -16,7 +16,8 @@ const sendEmail = async ({ to, html, subject }) => {
 
   transporter.sendMail(mailOptions, function (err, info) {
     if (err) {
-      throw new CustomError("Error sending email");
+      console.log(err);
+      throw new CustomError("Error sending email", 500);
     }
   });
 };

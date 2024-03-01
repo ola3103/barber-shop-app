@@ -1,9 +1,12 @@
 import { Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import HomePage from "./pages/HomePage";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Layout from "./component/Layout";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   return (
@@ -33,7 +36,16 @@ function App() {
             </Layout>
           }
         />
+        <Route
+          path="/verify-email"
+          element={
+            <Layout>
+              <VerifyEmail />
+            </Layout>
+          }
+        />
       </Routes>
+      <ToastContainer />
     </>
   );
 }

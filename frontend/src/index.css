@@ -49,7 +49,14 @@ li {
   font-weight: 700;
   padding: 0.95rem;
 }
-
+.loader_page {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+}
 /* ------------------------------
 NAVBAR
 ------------------------------- */
@@ -633,6 +640,56 @@ footer {
 /* ------------------------------
 SIGN IN AND SIGN UP FORM
 ------------------------------- */
+.form_page {
+  position: relative;
+}
+.check_email_popup {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  transition: all 0.4s ease-in;
+}
+.check_email_popup_container {
+  max-width: fit-content;
+  background: var(--black-1--);
+  padding: 0.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+.close_check_email_popup {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gold--);
+  cursor: pointer;
+}
+.check_email_img {
+  max-width: 4rem;
+  margin: 1.75rem 0;
+}
+.check_email_text {
+  color: var(--gold--);
+  max-width: 400px;
+  margin-bottom: 1.2rem;
+}
+.check_email_ok_btn {
+  padding: 0.75rem;
+  font-family: "Mulish", sans-serif;
+  font-size: 1rem;
+  border: none;
+  background: var(--gold--);
+  color: var(--black-1--);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
 .sign_in_form {
   height: 100vh;
   width: 100%;
@@ -699,4 +756,9 @@ SIGN IN AND SIGN UP FORM
   margin-left: 0.25rem;
   color: var(--gold--);
   text-decoration: underline;
+}
+.form_error {
+  color: #ff0000;
+  font-weight: 300;
+  font-size: 0.75rem;
 }
