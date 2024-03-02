@@ -19,3 +19,28 @@ export const registerUser = async (formData) => {
     console.log(error);
   }
 };
+
+export const handleVerifyEmail = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/api/v1/auth/verify-user`,
+      formData
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    notification({ message: error.response.data.message, status: "error" });
+  }
+};
+
+export const isLoggedIn = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/v1/auth/me`, {
+      withCredentials: true,
+    });
+    console.log(response);
+    return response;
+  } catch (error) {
+    notification({ message: error.response.data.message, status: "error" });
+  }
+};
