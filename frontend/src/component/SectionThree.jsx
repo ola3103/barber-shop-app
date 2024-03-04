@@ -14,15 +14,15 @@ const SectionThree = () => {
           </p>
           <p className="single_working_hours">
             <span className="single_working_hrs_days">Weekdays</span>
-            <span className="single_working_hrs_time">9AM - 11PM</span>
+            <span className="single_working_hrs_time">9AM - 10PM</span>
           </p>
           <p className="single_working_hours">
             <span className="single_working_hrs_days">Saturday</span>
-            <span className="single_working_hrs_time">12PM - 9PM</span>
+            <span className="single_working_hrs_time">12PM - 10PM</span>
           </p>
           <p className="single_working_hours">
             <span className="single_working_hrs_days">Sunday</span>
-            <span className="single_working_hrs_time">3PM - 11PM</span>
+            <span className="single_working_hrs_time">12PM - 10PM</span>
           </p>
         </div>
       </div>

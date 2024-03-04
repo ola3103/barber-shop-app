@@ -15,6 +15,7 @@ const HeroSection = () => {
             precision cuts and personalized service. Elevate your style at our
             premier barber shop, where tradition meets innovation.{" "}
           </p>
+
           <Link to="/sign-in" className="general_btn">
             Book An Appointment
           </Link>

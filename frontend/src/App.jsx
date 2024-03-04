@@ -7,6 +7,10 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Layout from "./component/Layout";
 import VerifyEmail from "./pages/VerifyEmail";
+import Bookings from "./component/Bookings";
+import UserHomePage from "./pages/UserHomePage";
+import UserLayout from "./component/UserLayout";
+import BookingForm from "./component/BookingForm";
 
 function App() {
   return (
@@ -42,6 +46,22 @@ function App() {
             <Layout>
               <VerifyEmail />
             </Layout>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <UserLayout>
+              <UserHomePage />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/bookings"
+          element={
+            <UserLayout>
+              <Bookings />
+            </UserLayout>
           }
         />
       </Routes>

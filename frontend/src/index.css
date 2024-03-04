@@ -69,6 +69,7 @@ NAVBAR
   padding-bottom: 1.75rem;
   border-bottom: 1px solid var(--gold--);
 }
+
 .single_navbar_item {
   margin-right: 1.25rem;
 }
@@ -88,6 +89,13 @@ NAVBAR
 .navbar_items {
   margin-left: auto;
   display: flex;
+}
+.logout_btn {
+  color: var(--white--);
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-family: "Mulish", sans-serif;
 }
 .menu_icon_btn {
   display: none;
@@ -762,3 +770,19 @@ SIGN IN AND SIGN UP FORM
   font-weight: 300;
   font-size: 0.75rem;
 }
+/* ------------------------------
+USER HOMEPAGE
+------------------------------- */
+.user_homepage {
+  /* background: var(--black-1--); */
+}
+.user_homepage_welcome_text {
+  color: var(--gold--);
+  text-align: right;
+  font-size: 0.8rem;
+  padding-top: 0.5rem;
+}
+
+/* ------------------------------
+USER HOMEPAGE BOOKING FORM
+------------------------------- */

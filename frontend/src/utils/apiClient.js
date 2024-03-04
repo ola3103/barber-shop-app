@@ -26,14 +26,14 @@ export const handleVerifyEmail = async (formData) => {
       `${API_BASE_URL}/api/v1/auth/verify-user`,
       formData
     );
-    return response;
+    // return response;
   } catch (error) {
     console.log(error);
     notification({ message: error.response.data.message, status: "error" });
   }
 };
 
-export const isLoggedIn = async () => {
+export const handleUserAndAuth = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/api/v1/auth/me`, {
       withCredentials: true,
