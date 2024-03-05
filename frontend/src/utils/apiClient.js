@@ -20,18 +20,18 @@ export const registerUser = async (formData) => {
   }
 };
 
-export const handleVerifyEmail = async (formData) => {
-  try {
-    const response = await axios.post(
-      `${API_BASE_URL}/api/v1/auth/verify-user`,
-      formData
-    );
-    // return response;
-  } catch (error) {
-    console.log(error);
-    notification({ message: error.response.data.message, status: "error" });
-  }
-};
+// export const handleVerifyEmail = async (formData) => {
+//   try {
+//     const response = await axios.post(
+//       `${API_BASE_URL}/api/v1/auth/verify-user`,
+//       formData
+//     );
+//     // return response;
+//   } catch (error) {
+//     console.log(error);
+//     notification({ message: error.response.data.message, status: "error" });
+//   }
+// };
 
 export const handleUserAndAuth = async () => {
   try {
@@ -39,6 +39,20 @@ export const handleUserAndAuth = async () => {
       withCredentials: true,
     });
     console.log(response);
+    return response;
+  } catch (error) {
+    notification({ message: error.response.data.message, status: "error" });
+  }
+};
+
+export const handleSignIn = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/api/v1/auth/sign-in`,
+      formData,
+      { withCredentials: true }
+    );
+    notification({ message: "Sign in successfully", status: "success" });
     return response;
   } catch (error) {
     notification({ message: error.response.data.message, status: "error" });

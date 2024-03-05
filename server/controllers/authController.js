@@ -144,9 +144,16 @@ exports.signIn = async (req, res) => {
     secure: process.env.NODE_ENV === "production",
   });
 
-  res
-    .status(200)
-    .json({ status: "success", message: `Welcome ${user.fullName}` });
+  const userObj = {
+    fullName: user.fullName,
+    email: user.email,
+  };
+
+  res.status(200).json({
+    status: "success",
+    message: `Welcome ${user.fullName}`,
+    data: userObj,
+  });
 };
 
 exports.getCurrentUser = async (req, res) => {
@@ -156,4 +163,14 @@ exports.getCurrentUser = async (req, res) => {
   res
     .status(200)
     .json({ status: "success", message: "current user", data: user });
+};
+
+exports.logoutUser = async (req, res) => {
+  res.cookie("auth_token", "logout user", {
+    expires: new Date(Date.now()),
+    secure: true,
+    httpOnly: process.env.NODE_ENV === "production",
+  });
+
+  res.status(200).json({ status: "success", message: "log out successful" });
 };

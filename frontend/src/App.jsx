@@ -10,7 +10,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Bookings from "./component/Bookings";
 import UserHomePage from "./pages/UserHomePage";
 import UserLayout from "./component/UserLayout";
-import BookingForm from "./component/BookingForm";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
@@ -48,22 +48,24 @@ function App() {
             </Layout>
           }
         />
-        <Route
-          path="/home"
-          element={
-            <UserLayout>
-              <UserHomePage />
-            </UserLayout>
-          }
-        />
-        <Route
-          path="/bookings"
-          element={
-            <UserLayout>
-              <Bookings />
-            </UserLayout>
-          }
-        />
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="/home"
+            element={
+              <UserLayout>
+                <UserHomePage />
+              </UserLayout>
+            }
+          />
+          <Route
+            path="/bookings"
+            element={
+              <UserLayout>
+                <Bookings />
+              </UserLayout>
+            }
+          />
+        </Route>
       </Routes>
       <ToastContainer />
     </>

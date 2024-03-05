@@ -1,5 +1,6 @@
 import BookingForm from "../component/BookingForm";
 import Loader from "../component/Loader";
+import ServicesAndPrice from "../component/ServicesAndPrice";
 import { GlobalUserContext } from "../context/UserContext";
 
 const UserHomePage = () => {
@@ -11,9 +12,12 @@ const UserHomePage = () => {
 
   return (
     <section className="user_homepage">
+      <p className="user_homepage_welcome_text container">
+        Welcome {user.fullName}
+      </p>
       <div className="user_homepage_container container">
-        <p className="user_homepage_welcome_text">Welcome {user.fullName}</p>
         <BookingForm />
+        <ServicesAndPrice />
       </div>
     </section>
   );

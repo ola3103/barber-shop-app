@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import * as apiClient from "../utils/apiClient";
+import { GlobalUserContext } from "../context/UserContext";
 
 const ProtectedRoute = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { isLoggedIn } = GlobalUserContext();
   const navigate = useNavigate();
 
   useEffect(() => {
-    return async () => {
-      const response = await apiClient.isLoggedIn();
-      if (response.data.status === "success") {
-        setIsLoggedIn(true);
-      }
-    };
-  }, []);
+    if (!isLoggedIn) {
+      navigate("/sign-in");
+    }
+  }, [isLoggedIn, navigate]);
 
-  return isLoggedIn ? <Outlet /> : navigate("/sign-in");
+  return isLoggedIn ? <Outlet /> : null;
 };
 
 export default ProtectedRoute;

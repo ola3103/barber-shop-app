@@ -774,7 +774,7 @@ SIGN IN AND SIGN UP FORM
 USER HOMEPAGE
 ------------------------------- */
 .user_homepage {
-  /* background: var(--black-1--); */
+  background: var(--black-1--);
 }
 .user_homepage_welcome_text {
   color: var(--gold--);
@@ -782,7 +782,218 @@ USER HOMEPAGE
   font-size: 0.8rem;
   padding-top: 0.5rem;
 }
-
+.user_homepage_container {
+  display: flex;
+  margin-top: 1.75rem;
+}
 /* ------------------------------
 USER HOMEPAGE BOOKING FORM
 ------------------------------- */
+.booking_form {
+  width: 50%;
+  background: #120d02;
+  box-shadow: inset 6px -6px 12px #070501, inset -6px 6px 12px #1d1503;
+  padding: 1.5rem 2.25rem;
+}
+.booking_form_container {
+  display: flex;
+  flex-direction: column;
+}
+.booking_form_header {
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold--);
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.booking_form_label {
+  display: flex;
+  flex-direction: column;
+  color: rgba(235, 189, 89, 0.7);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  font-family: "Mulish", sans-serif;
+}
+.booking_form_input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+  background: var(--black-1--);
+  color: var(--gold--);
+  border: 1px solid rgba(235, 189, 89, 0.4);
+  outline: none;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+}
+.booking_form_input:focus {
+  border: 1.25px solid var(--gold--);
+}
+.booking_form_date_time_box {
+  margin-bottom: 2rem;
+}
+.booking_form_date {
+  margin-bottom: 1.75rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.form_date {
+  background: var(--black-1--);
+  color: var(--gold--);
+}
+.booking_time_selected_date {
+  color: var(--gold-1--);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+.react-calendar {
+  border: 1px solid var(--gold-2--);
+}
+.react-calendar__tile {
+  color: var(--gold--);
+}
+.react-calendar__tile:hover {
+  background: rgba(235, 189, 89, 0.2) !important;
+}
+.react-calendar__tile--active {
+  background: var(--gold-2--) !important;
+  color: var(--white--);
+}
+.react-calendar__navigation__arrow {
+  color: var(--gold--);
+}
+.react-calendar__navigation__label__labelText {
+  color: var(--gold--);
+}
+.appointmentSlot {
+  border: 1px solid var(--gold--);
+  color: var(--gold--);
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  width: fit-content;
+}
+.booking_service_box {
+  color: var(--gold--);
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-color: var(--gold--);
+  margin-bottom: 1.75rem;
+  width: fit-content;
+}
+.booking_service_box_header {
+  padding: 0 0.5rem;
+}
+.booking_form_label_checkbox {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  display: flex;
+  width: fit-content;
+}
+.booking_form_input_checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.5rem;
+}
+.booking_form_input_checkbox::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: var(--black-2--);
+  border: 2px solid var(--gold--);
+  border-radius: 2px;
+}
+.booking_form_input_checkbox:checked::before {
+  background-color: var(--black-1--);
+}
+.booking_form_input_checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--gold-1--);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.additional_text_input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin-top: 0.2rem;
+  background: var(--black-1--);
+  color: var(--gold--);
+  border: 1px solid rgba(235, 189, 89, 0.4);
+  outline: none;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  resize: none;
+}
+.additional_text_input:focus {
+  border: 1.25px solid var(--gold--);
+}
+/* ------------------------------
+USER HOMEPAGE SERVICE AND PRICE LIST
+------------------------------- */
+.service_price_section {
+  background: var(--black-1--);
+  color: var(--gold--);
+  border: 1px solid var(--gold--);
+  width: 50%;
+  height: fit-content;
+  padding: 1rem 1.25rem;
+  margin-left: 4rem;
+}
+.service_price_header {
+  font-size: 1.5rem;
+  letter-spacing: 1.25px;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.single_service_price {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid rgba(235, 189, 89, 0.3);
+  display: flex;
+  justify-content: space-between;
+}
+.single_service_price:last-child {
+  border: none;
+}
+/* --------------------------------
+USER HOMEPAGE RESPONSIVENESS
+---------------------------------- */
+@media (max-width: 768px) {
+  .booking_form {
+    width: 50%;
+    padding: 1.5rem 0.5rem;
+  }
+  .service_price_section {
+    padding: 1rem 0.75rem;
+    margin-left: 1rem;
+  }
+}
+@media (max-width: 576px) {
+  .user_homepage_container {
+    flex-wrap: wrap;
+  }
+  .booking_form {
+    width: 100%;
+    padding: 1.5rem 0.5rem;
+  }
+  .service_price_section {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    margin-left: 0;
+  }
+}

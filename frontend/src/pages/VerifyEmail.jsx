@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import * as apiClient from "../utils/apiClient";
 import notification from "../utils/notification";
 import axios from "axios";
 
@@ -8,7 +7,7 @@ import { useEffect, useState } from "react";
 import { GlobalUserContext } from "../context/UserContext";
 
 const VerifyEmail = () => {
-  const { setUser, setIsLoggedIn } = GlobalUserContext();
+  const { setUser, setIsLoggedIn, isLoggedIn } = GlobalUserContext();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -31,7 +30,7 @@ const VerifyEmail = () => {
       console.log(response);
       setUser(response.data.data);
       setIsLoggedIn(true);
-      navigate("/home");
+      window.location.reload();
     } catch (error) {
       console.log(error);
       notification({ message: error.response.data.message, status: "error" });
@@ -46,14 +45,16 @@ const VerifyEmail = () => {
   }, []);
 
   if (isLoading) {
-    return <Loader />;
+    <Loader />;
   }
 
-  return (
-    <div>
-      <Loader />
-    </div>
-  );
+  return isLoggedIn ? navigate("/home") : <Loader />;
+
+  // return (
+  //   <div>
+  //     <Loader />
+  //   </div>
+  // );
 };
 
 export default VerifyEmail;

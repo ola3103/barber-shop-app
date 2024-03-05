@@ -1,10 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import { MdClose } from "react-icons/md";
+import { GlobalUserContext } from "../context/UserContext";
+import axios from "axios";
+import notification from "../utils/notification";
 
 const HomeNavbar = () => {
+  const { setUser, setIsLoggedIn } = GlobalUserContext();
   const [showNav, setShowNav] = useState(false);
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.delete(
+        `${API_BASE_URL}/api/v1/auth/logout`,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response);
+      setIsLoggedIn(false);
+      setUser(null);
+      navigate("/");
+    } catch (error) {
+      notification({ message: error.response.data.message, status: "error" });
+      navigate("/");
+    }
+  };
 
   const handleNavView = () => {
     setShowNav(!showNav);
@@ -36,7 +61,7 @@ const HomeNavbar = () => {
             </Link>
           </li>
           <li className="single_navbar_item">
-            <button href="" className="logout_btn">
+            <button className="logout_btn" onClick={handleLogout}>
               Log Out
             </button>
           </li>

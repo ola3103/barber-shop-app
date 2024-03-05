@@ -45,7 +45,11 @@ const SignUp = () => {
         </div>
       )}
 
-      <form className="sign_in_form" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="sign_in_form"
+        onSubmit={handleSubmit(onSubmit)}
+        autoComplete="off"
+      >
         <div className="form_container">
           <h1 className="form_header">Get Started</h1>
           <p className="form_subtitle">Create your account now</p>
@@ -57,7 +61,6 @@ const SignUp = () => {
               })}
               className="form_input"
               type="text"
-              autoComplete="no"
             />
             {errors.fullName && (
               <span className="form_error">{errors.fullName.message}</span>
