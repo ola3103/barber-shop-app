@@ -18,6 +18,14 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please provide your password"],
     },
+    roles: {
+      type: String,
+      enum: {
+        values: ["admin", "user"],
+        message: "`{VALUE}` is not an option",
+      },
+      default: "user",
+    },
     isVerified: {
       type: Boolean,
       default: false,

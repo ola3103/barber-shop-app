@@ -6,13 +6,7 @@ const ProtectedRoute = () => {
   const { isLoggedIn } = GlobalUserContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/sign-in");
-    }
-  }, [isLoggedIn, navigate]);
-
-  return isLoggedIn ? <Outlet /> : null;
+  return isLoggedIn ? <Outlet /> : navigate("/");
 };
 
 export default ProtectedRoute;

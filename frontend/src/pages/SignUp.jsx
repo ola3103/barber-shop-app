@@ -10,10 +10,13 @@ const SignUp = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
     apiClient.registerUser(data);
+    reset();
+    setIsModalOpen(true);
     console.log(data);
   };
 

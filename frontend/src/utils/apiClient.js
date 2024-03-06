@@ -10,11 +10,6 @@ export const registerUser = async (formData) => {
       formData
     );
     console.log(response);
-    notification({
-      message:
-        "Kindly check your email inbox and click on the verification link that has been sent to confirm your account",
-      status: "success",
-    });
   } catch (error) {
     console.log(error);
   }
