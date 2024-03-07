@@ -1,19 +1,18 @@
 const mongoose = require("mongoose");
 
-const serviceSchema = mongoose.Schema({
-  serviceName: {
-    type: String,
-    required: true,
+const serviceSchema = mongoose.Schema(
+  {
+    serviceName: {
+      type: String,
+      required: true,
+    },
+    servicePrice: {
+      type: Number,
+      required: true,
+    },
   },
-  servicePrice: {
-    type: Number,
-    required: true,
-  },
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-  },
-});
+  { timestamps: true }
+);
 
 const Service = mongoose.model("Service", serviceSchema);
 

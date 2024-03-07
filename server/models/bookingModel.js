@@ -1,24 +1,32 @@
 const mongoose = require("mongoose");
-const validator = require("validator");
 
-const bookingSchema = mongoose.Schema({
-  fullName: {
-    type: String,
-    required: [true, "Please provide your name"],
+const bookingSchema = new mongoose.Schema(
+  {
+    services: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Service",
+      },
+    ],
+    bookingDateAndTime: {
+      type: String,
+      required: [true, "This field is required"],
+      unique: [true, "Slot is already taken, please chose another slot"],
+    },
+    isBooked: {
+      type: Boolean,
+      default: false,
+    },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    additionalRequest: String,
   },
-  email: {
-    type: String,
-    required: [true, "Please provide your email"],
-    unique: [true, "Email already exist"],
-    validate: [validator.isEmail, "Please provide a valid email"],
-  },
-  bookingDateAndTime: {
-    type: String,
-    required: [true, "This field is required"],
-    unique: [true, "Slot is already taken, please chose another slot"],
-  },
-  isBooked: {
-    type: Boolean,
-    default: false,
-  },
-});
+  { timestamps: true }
+);
+
+const Booking = mongoose.model("Booking", bookingSchema);
+
+module.exports = Booking;

@@ -12,15 +12,28 @@ const globalErrorController = (err, req, res, next) => {
   }
 
   if (err.code === 11000) {
-    const value = err.keyValue.email;
-    errObject.message = `The user with ${value} already exist`;
-    errObject.statusCode = 400;
+    if (Object.keys(err.keyValue)[0] === "email") {
+      const value = err.keyValue.email;
+      errObject.message = `user already exist`;
+      errObject.statusCode = 400;
+    }
+    if (Object.keys(err.keyValue)[0] === "bookingDateAndTime") {
+      const value = err.keyValue.bookingDateAndTime;
+      errObject.message = `The date ${value} is already taken please select another date`;
+      errObject.statusCode = 400;
+    }
+  }
+
+  if (err.name === "CastError") {
+    errObject.statusCode = 404;
+    errObject.message = `Service with id: ${err.value} cannot be found`;
   }
 
   return res.status(errObject.statusCode).json({
     status: errObject.status,
     message: errObject.message,
     error: err,
+    errorStack: err.stack,
   });
 };
 

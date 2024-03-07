@@ -24,11 +24,27 @@ exports.protect = async (req, res, next) => {
   next();
 };
 
+exports.authorizedUser = (role) => {
+  return async (req, res, next) => {
+    if (role !== req.user.role) {
+      throw new CustomError(
+        "You are not authorized to perform this action",
+        401
+      );
+    }
+    next();
+  };
+};
+
 exports.registerUser = async (req, res) => {
-  const { fullName, email, password } = req.body;
+  const { fullName, email, password, role } = req.body;
   const userExist = await User.findOne({ email });
   if (userExist) {
     throw new CustomError("Email already exist", 400);
+  }
+
+  if (role === "admin") {
+    throw new CustomError("You are not authorized to perform this action", 401);
   }
 
   const beforeTokenHashed = crypto.randomBytes(40).toString("hex");
@@ -95,7 +111,7 @@ exports.verifyEmail = async (req, res) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const tokenObj = { userId: user._id };
+  const tokenObj = { userId: user._id, role: user.role };
 
   const jwtToken = jwt.sign(tokenObj, process.env.JWT_SECRET_KEY, {
     expiresIn: "90d",
@@ -134,9 +150,13 @@ exports.signIn = async (req, res) => {
     throw new CustomError("Account not verified", 400);
   }
 
-  const jwtToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: "90d",
-  });
+  const jwtToken = jwt.sign(
+    { userId: user._id, role: user.role },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: "90d",
+    }
+  );
 
   res.cookie("auth_token", jwtToken, {
     expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 90),
