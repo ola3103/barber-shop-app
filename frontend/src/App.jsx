@@ -48,24 +48,24 @@ function App() {
             </Layout>
           }
         />
-        <Route element={<ProtectedRoute />}>
-          <Route
-            path="/home"
-            element={
-              <UserLayout>
-                <UserHomePage />
-              </UserLayout>
-            }
-          />
-          <Route
-            path="/bookings"
-            element={
-              <UserLayout>
-                <Bookings />
-              </UserLayout>
-            }
-          />
-        </Route>
+        {/* <Route element={<ProtectedRoute />}> */}
+        <Route
+          path="/home"
+          element={
+            <UserLayout>
+              <UserHomePage />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/bookings"
+          element={
+            <UserLayout>
+              <Bookings />
+            </UserLayout>
+          }
+        />
+        {/* </Route> */}
       </Routes>
       <ToastContainer />
     </>

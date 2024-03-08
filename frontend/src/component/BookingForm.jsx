@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -6,13 +6,34 @@ import { GlobalUserContext } from "../context/UserContext";
 
 const BookingForm = () => {
   const { user } = GlobalUserContext();
-  const [value, setValue] = useState(new Date());
+  const [dateValue, setDateValue] = useState(new Date());
+  const [slotValue, setSlotValue] = useState(false);
+  const [isToday, setIsToday] = useState(false);
 
-  const onChange = (nextValue) => {
-    setValue(nextValue);
+  const handleSlotValue = (slotDataValue) => {
+    setSlotValue(!slotValue);
   };
 
-  const date = new Date(value);
+  const getSlotDataValue = (event) => {
+    return event.currentTarget.getAttribute("data-value");
+  };
+
+  const onChange = (nextValue) => {
+    setDateValue(nextValue);
+  };
+
+  useEffect(() => {
+    const today = new Date();
+
+    const checkDateMatch =
+      today.getFullYear() === dateValue.getFullYear() &&
+      today.getMonth() === dateValue.getMonth() &&
+      today.getDate() === dateValue.getDate();
+
+    setIsToday(checkDateMatch);
+  }, [dateValue]);
+
+  const date = new Date(dateValue);
 
   const options = { weekday: "long", month: "long", day: "2-digit" };
   const formattedDate = date.toLocaleDateString("en-US", options);
@@ -59,19 +80,91 @@ const BookingForm = () => {
         </label>
         <div className="booking_form_date_time_box">
           <div className="booking_form_date">
-            <Calendar className="form_date" onChange={onChange} value={value} />
+            <Calendar
+              className="form_date"
+              onChange={onChange}
+              value={dateValue}
+              minDate={new Date(new Date().getTime() + 24 * 60 * 60 * 1000)}
+            />
           </div>
           <div className="booking_slot">
             <p className="booking_time_selected_date">{formattedDate}</p>
-            <div className="booking_slot_box">
-              <div
-                className="appointmentSlot slot"
-                data-value={`${formattedDate} 09:00 AM`}
-                role="button"
-              >
-                09:00 AM
+            {isToday ? null : (
+              <div className="booking_slot_box">
+                <div
+                  className={
+                    slotValue
+                      ? "appointmentSlot slot slot_active"
+                      : "appointmentSlot slot"
+                  }
+                  onClick={handleSlotValue}
+                  data-value={`${formattedDate} 10:00 AM`}
+                  role="button"
+                >
+                  10:00 AM
+                </div>
+                <div
+                  className={
+                    slotValue
+                      ? "appointmentSlot slot slot_active"
+                      : "appointmentSlot slot"
+                  }
+                  onClick={handleSlotValue}
+                  data-value={`${formattedDate} 12:00 PM`}
+                  role="button"
+                >
+                  12:00 PM
+                </div>
+                <div
+                  className={
+                    slotValue
+                      ? "appointmentSlot slot slot_active"
+                      : "appointmentSlot slot"
+                  }
+                  onClick={handleSlotValue}
+                  data-value={`${formattedDate} 02:00 PM`}
+                  role="button"
+                >
+                  02:00 PM
+                </div>
+                <div
+                  className={
+                    slotValue
+                      ? "appointmentSlot slot slot_active"
+                      : "appointmentSlot slot"
+                  }
+                  onClick={handleSlotValue}
+                  data-value={`${formattedDate} 04:00 PM`}
+                  role="button"
+                >
+                  04:00 PM
+                </div>
+                <div
+                  className={
+                    slotValue
+                      ? "appointmentSlot slot slot_active"
+                      : "appointmentSlot slot"
+                  }
+                  onClick={handleSlotValue}
+                  data-value={`${formattedDate} 06:00 PM`}
+                  role="button"
+                >
+                  06:00 PM
+                </div>
+                <div
+                  className={
+                    slotValue
+                      ? "appointmentSlot slot slot_active"
+                      : "appointmentSlot slot"
+                  }
+                  onClick={handleSlotValue}
+                  data-value={`${formattedDate} 08:00 PM`}
+                  role="button"
+                >
+                  08:00 PM
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
         <fieldset className="booking_service_box">
