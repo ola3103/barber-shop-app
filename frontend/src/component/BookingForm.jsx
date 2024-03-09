@@ -3,19 +3,20 @@ import { useForm } from "react-hook-form";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { GlobalUserContext } from "../context/UserContext";
+import SingleServiceLabelInput from "./SingleServiceLabelInput";
 
 const BookingForm = () => {
-  const { user } = GlobalUserContext();
+  const { user, serviceData } = GlobalUserContext();
   const [dateValue, setDateValue] = useState(new Date());
-  const [slotValue, setSlotValue] = useState(false);
+  const [activeSlot, setActiveSlot] = useState(null);
   const [isToday, setIsToday] = useState(false);
 
-  const handleSlotValue = (slotDataValue) => {
-    setSlotValue(!slotValue);
-  };
-
-  const getSlotDataValue = (event) => {
-    return event.currentTarget.getAttribute("data-value");
+  const handleToggleSlot = (event) => {
+    const slotDataValue = event.currentTarget.getAttribute("data-value");
+    setActiveSlot((prevSlot) =>
+      prevSlot === slotDataValue ? null : slotDataValue
+    );
+    console.log(activeSlot);
   };
 
   const onChange = (nextValue) => {
@@ -46,6 +47,15 @@ const BookingForm = () => {
       fullName: `${user.fullName}`,
       email: `${user.email}`,
     },
+  });
+
+  const allServiceLabelInput = serviceData.map((serviceLabelInput) => {
+    return (
+      <SingleServiceLabelInput
+        key={serviceLabelInput._id}
+        serviceLabelInput={serviceLabelInput}
+      />
+    );
   });
 
   return (
@@ -93,11 +103,11 @@ const BookingForm = () => {
               <div className="booking_slot_box">
                 <div
                   className={
-                    slotValue
+                    activeSlot === `${formattedDate} 10:00 AM`
                       ? "appointmentSlot slot slot_active"
                       : "appointmentSlot slot"
                   }
-                  onClick={handleSlotValue}
+                  onClick={handleToggleSlot}
                   data-value={`${formattedDate} 10:00 AM`}
                   role="button"
                 >
@@ -105,11 +115,11 @@ const BookingForm = () => {
                 </div>
                 <div
                   className={
-                    slotValue
+                    activeSlot === `${formattedDate} 12:00 PM`
                       ? "appointmentSlot slot slot_active"
                       : "appointmentSlot slot"
                   }
-                  onClick={handleSlotValue}
+                  onClick={handleToggleSlot}
                   data-value={`${formattedDate} 12:00 PM`}
                   role="button"
                 >
@@ -117,11 +127,11 @@ const BookingForm = () => {
                 </div>
                 <div
                   className={
-                    slotValue
+                    activeSlot === `${formattedDate} 02:00 PM`
                       ? "appointmentSlot slot slot_active"
                       : "appointmentSlot slot"
                   }
-                  onClick={handleSlotValue}
+                  onClick={handleToggleSlot}
                   data-value={`${formattedDate} 02:00 PM`}
                   role="button"
                 >
@@ -129,11 +139,11 @@ const BookingForm = () => {
                 </div>
                 <div
                   className={
-                    slotValue
+                    activeSlot === `${formattedDate} 04:00 PM`
                       ? "appointmentSlot slot slot_active"
                       : "appointmentSlot slot"
                   }
-                  onClick={handleSlotValue}
+                  onClick={handleToggleSlot}
                   data-value={`${formattedDate} 04:00 PM`}
                   role="button"
                 >
@@ -141,11 +151,11 @@ const BookingForm = () => {
                 </div>
                 <div
                   className={
-                    slotValue
+                    activeSlot === `${formattedDate} 06:00 PM`
                       ? "appointmentSlot slot slot_active"
                       : "appointmentSlot slot"
                   }
-                  onClick={handleSlotValue}
+                  onClick={handleToggleSlot}
                   data-value={`${formattedDate} 06:00 PM`}
                   role="button"
                 >
@@ -153,11 +163,11 @@ const BookingForm = () => {
                 </div>
                 <div
                   className={
-                    slotValue
+                    activeSlot === `${formattedDate} 08:00 PM`
                       ? "appointmentSlot slot slot_active"
                       : "appointmentSlot slot"
                   }
-                  onClick={handleSlotValue}
+                  onClick={handleToggleSlot}
                   data-value={`${formattedDate} 08:00 PM`}
                   role="button"
                 >
@@ -171,37 +181,13 @@ const BookingForm = () => {
           <legend className="booking_service_box_header">
             Types of services
           </legend>
-          <label className="booking_form_label_checkbox">
-            <input className="booking_form_input_checkbox" type="checkbox" />
-            Haircut
-          </label>
-          <label className="booking_form_label_checkbox">
-            <input className="booking_form_input_checkbox" type="checkbox" />
-            Shaving
-          </label>
-          <label className="booking_form_label_checkbox">
-            <input className="booking_form_input_checkbox" type="checkbox" />
-            Hair Treatment
-          </label>
-          <label className="booking_form_label_checkbox">
-            <input className="booking_form_input_checkbox" type="checkbox" />
-            Styling
-          </label>
-          <label className="booking_form_label_checkbox">
-            <input className="booking_form_input_checkbox" type="checkbox" />
-            Facial Treatment
-          </label>
+          {allServiceLabelInput}
         </fieldset>
         <label className="booking_form_label">
           Additional Request
-          <textarea
-            className="additional_text_input"
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-          />
+          <textarea className="additional_text_input" name="" id="" />
         </label>
+        <ul className="booking_price_summary"></ul>
       </div>
     </form>
   );
